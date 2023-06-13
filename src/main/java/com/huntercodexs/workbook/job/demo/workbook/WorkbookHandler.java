@@ -48,13 +48,9 @@ public class WorkbookHandler extends WorkbookStyles {
 
         for (Object column : this.cols) {
             Cell cell = row.createCell(colCounter++);
-            cell.setCellStyle(this.cellHeaderStyle);
+            cell.setCellStyle(this.cellCurrentStyle);
             cell.setCellValue(column.toString().toUpperCase());
-
-            if (autoSize) {
-                this.sheet.setColumnWidth(colCounter, this.colWidth);
-                this.sheet.setDefaultRowHeight(this.rowHeightHeader);
-            }
+            this.sheet.setColumnWidth(colCounter, this.colWidth);
         }
     }
 
@@ -70,14 +66,9 @@ public class WorkbookHandler extends WorkbookStyles {
 
             for (Object column : line) {
                 Cell cell = row.createCell(colCounter++);
-                cell.setCellStyle(this.cellBodyStyle);
+                cell.setCellStyle(this.cellCurrentStyle);
                 cell.setCellValue(column.toString());
-
-                if (autoSize) {
-                    this.sheet.setColumnWidth(colCounter, this.colWidth);
-                    this.sheet.setDefaultRowHeight(this.rowHeightBody);
-                }
-
+                this.sheet.setColumnWidth(colCounter, this.colWidth);
             }
         }
     }

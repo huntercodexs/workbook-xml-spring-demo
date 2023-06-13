@@ -21,9 +21,6 @@ public class WorkbookStyles {
     protected Font fontBody;
     protected Font fontCurrent;
     protected int colWidth;
-    protected short rowHeightHeader;
-    protected short rowHeightBody;
-    protected short rowHeightCurrent;
 
     public final WorkbookStyles toHeader() {
         if (this.fontHeader == null) {
@@ -176,11 +173,11 @@ public class WorkbookStyles {
         this.cellCurrentStyle.setFont(this.fontCurrent);
     }
 
-    public void border(String border, String type) {
+    public void cellBorder(String border, String style) {
 
         BorderStyle borderStyle;
 
-        switch (type) {
+        switch (style) {
             case "solid" -> {
                 borderStyle = BorderStyle.THIN;
             }
@@ -224,12 +221,8 @@ public class WorkbookStyles {
         }
     }
 
-    public void width(int colWidth) {
+    public void cellWidth(int colWidth) {
         this.colWidth = 25 * colWidth;
-    }
-
-    public void height(short rowHeight) {
-        this.rowHeightCurrent = rowHeight;
     }
 
     public XSSFCellStyle getCellStyle() {
