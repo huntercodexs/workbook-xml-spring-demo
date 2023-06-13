@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class WorkbookStyles {
+public class WorkbookStyles extends WorkbookColors {
 
     protected XSSFWorkbook workbook;
     protected XSSFSheet sheet;
@@ -57,36 +57,84 @@ public class WorkbookStyles {
         this.cellCurrentStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         switch (color) {
             case "white" -> {
-                this.cellCurrentStyle.setFillBackgroundColor(IndexedColors.WHITE.getIndex());
-                this.cellCurrentStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());
-            }
-            case "blue" -> {
-                this.cellCurrentStyle.setFillBackgroundColor(IndexedColors.BLUE.getIndex());
-                this.cellCurrentStyle.setFillForegroundColor(IndexedColors.BLUE.getIndex());
+                this.cellCurrentStyle.setFillBackgroundColor(WHITE);
+                this.cellCurrentStyle.setFillForegroundColor(WHITE);
             }
             case "black" -> {
-                this.cellCurrentStyle.setFillBackgroundColor(IndexedColors.BLACK.getIndex());
-                this.cellCurrentStyle.setFillForegroundColor(IndexedColors.BLACK.getIndex());
+                this.cellCurrentStyle.setFillBackgroundColor(BLACK);
+                this.cellCurrentStyle.setFillForegroundColor(BLACK);
+            }
+            case "blue" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(BLUE);
+                this.cellCurrentStyle.setFillForegroundColor(BLUE);
             }
             case "red" -> {
-                this.cellCurrentStyle.setFillBackgroundColor(IndexedColors.RED.getIndex());
-                this.cellCurrentStyle.setFillForegroundColor(IndexedColors.RED.getIndex());
+                this.cellCurrentStyle.setFillBackgroundColor(RED);
+                this.cellCurrentStyle.setFillForegroundColor(RED);
             }
             case "yellow" -> {
-                this.cellCurrentStyle.setFillBackgroundColor(IndexedColors.YELLOW.getIndex());
-                this.cellCurrentStyle.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
-            }
-            case "green" -> {
-                this.cellCurrentStyle.setFillBackgroundColor(IndexedColors.GREEN.getIndex());
-                this.cellCurrentStyle.setFillForegroundColor(IndexedColors.GREEN.getIndex());
+                this.cellCurrentStyle.setFillBackgroundColor(YELLOW);
+                this.cellCurrentStyle.setFillForegroundColor(YELLOW);
             }
             case "pink" -> {
-                this.cellCurrentStyle.setFillBackgroundColor(IndexedColors.PINK.getIndex());
-                this.cellCurrentStyle.setFillForegroundColor(IndexedColors.PINK.getIndex());
+                this.cellCurrentStyle.setFillBackgroundColor(PINK);
+                this.cellCurrentStyle.setFillForegroundColor(PINK);
+            }
+            case "green" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(GREEN);
+                this.cellCurrentStyle.setFillForegroundColor(GREEN);
             }
             case "orange" -> {
-                this.cellCurrentStyle.setFillBackgroundColor(IndexedColors.ORANGE.getIndex());
-                this.cellCurrentStyle.setFillForegroundColor(IndexedColors.ORANGE.getIndex());
+                this.cellCurrentStyle.setFillBackgroundColor(ORANGE);
+                this.cellCurrentStyle.setFillForegroundColor(ORANGE);
+            }
+            case "aqua" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(AQUA);
+                this.cellCurrentStyle.setFillForegroundColor(AQUA);
+            }
+            case "brown" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(BROWN);
+                this.cellCurrentStyle.setFillForegroundColor(BROWN);
+            }
+            case "coral" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(CORAL);
+                this.cellCurrentStyle.setFillForegroundColor(CORAL);
+            }
+            case "silver-light" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(SILVER_LIGHT);
+                this.cellCurrentStyle.setFillForegroundColor(SILVER_LIGHT);
+            }
+            case "silver" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(SILVER);
+                this.cellCurrentStyle.setFillForegroundColor(SILVER);
+            }
+            case "grey" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(GREY);
+                this.cellCurrentStyle.setFillForegroundColor(GREY);
+            }
+            case "dark-silver" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(DARK_SILVER);
+                this.cellCurrentStyle.setFillForegroundColor(DARK_SILVER);
+            }
+            case "gold" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(GOLD);
+                this.cellCurrentStyle.setFillForegroundColor(GOLD);
+            }
+            case "indigo" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(INDIGO);
+                this.cellCurrentStyle.setFillForegroundColor(INDIGO);
+            }
+            case "purple" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(PURPLE);
+                this.cellCurrentStyle.setFillForegroundColor(PURPLE);
+            }
+            case "lime" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(LIME);
+                this.cellCurrentStyle.setFillForegroundColor(LIME);
+            }
+            case "rose" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(ROSE);
+                this.cellCurrentStyle.setFillForegroundColor(ROSE);
             }
             default -> throw new RuntimeException("Invalid color to background: " + color);
         }
@@ -95,28 +143,64 @@ public class WorkbookStyles {
     public void fontColor(String color) {
         switch (color) {
             case "white" -> {
-                this.fontCurrent.setColor(IndexedColors.WHITE.getIndex());
-            }
-            case "blue" -> {
-                this.fontCurrent.setColor(IndexedColors.BLUE.getIndex());
+                this.fontCurrent.setColor(WHITE);
             }
             case "black" -> {
-                this.fontCurrent.setColor(IndexedColors.BLACK.getIndex());
+                this.fontCurrent.setColor(BLACK);
+            }
+            case "blue" -> {
+                this.fontCurrent.setColor(BLUE);
             }
             case "red" -> {
-                this.fontCurrent.setColor(IndexedColors.RED.getIndex());
+                this.fontCurrent.setColor(RED);
             }
             case "yellow" -> {
-                this.fontCurrent.setColor(IndexedColors.YELLOW.getIndex());
-            }
-            case "green" -> {
-                this.fontCurrent.setColor(IndexedColors.GREEN.getIndex());
+                this.fontCurrent.setColor(YELLOW);
             }
             case "pink" -> {
-                this.fontCurrent.setColor(IndexedColors.PINK.getIndex());
+                this.fontCurrent.setColor(PINK);
+            }
+            case "green" -> {
+                this.fontCurrent.setColor(GREEN);
             }
             case "orange" -> {
-                this.fontCurrent.setColor(IndexedColors.ORANGE.getIndex());
+                this.fontCurrent.setColor(ORANGE);
+            }
+            case "aqua" -> {
+                this.fontCurrent.setColor(AQUA);
+            }
+            case "brown" -> {
+                this.fontCurrent.setColor(BROWN);
+            }
+            case "coral" -> {
+                this.fontCurrent.setColor(CORAL);
+            }
+            case "silver-light" -> {
+                this.fontCurrent.setColor(SILVER_LIGHT);
+            }
+            case "silver" -> {
+                this.fontCurrent.setColor(SILVER);
+            }
+            case "grey" -> {
+                this.fontCurrent.setColor(GREY);
+            }
+            case "dark-silver" -> {
+                this.fontCurrent.setColor(DARK_SILVER);
+            }
+            case "gold" -> {
+                this.fontCurrent.setColor(GOLD);
+            }
+            case "indigo" -> {
+                this.fontCurrent.setColor(INDIGO);
+            }
+            case "purple" -> {
+                this.fontCurrent.setColor(PURPLE);
+            }
+            case "lime" -> {
+                this.fontCurrent.setColor(LIME);
+            }
+            case "rose" -> {
+                this.fontCurrent.setColor(ROSE);
             }
             default -> throw new RuntimeException("Invalid color to font: " + color);
         }
