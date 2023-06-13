@@ -20,16 +20,21 @@ public class WorkbookStyles {
     protected Font fontHeader;
     protected Font fontBody;
     protected Font fontCurrent;
-    protected int colWidth;
+    protected int colWidth = 0;
+    protected int cellHeaderHeight;
+    protected int cellBodyHeight;
+    protected int cellCurrentHeight = 0;
 
     public final WorkbookStyles toHeader() {
         if (this.fontHeader == null) {
             this.fontHeader = this.workbook.createFont();
             this.fontCurrent = this.fontHeader;
+            this.cellCurrentHeight = this.cellHeaderHeight;
         }
         if (this.cellHeaderStyle == null) {
             this.cellHeaderStyle = this.workbook.createCellStyle();
             this.cellCurrentStyle = this.cellHeaderStyle;
+            this.cellCurrentHeight = this.cellHeaderHeight;
         }
         return this;
     }
@@ -38,10 +43,12 @@ public class WorkbookStyles {
         if (this.fontBody == null) {
             this.fontBody = this.workbook.createFont();
             this.fontCurrent = this.fontBody;
+            this.cellCurrentHeight = this.cellBodyHeight;
         }
         if (this.cellBodyStyle == null) {
             this.cellBodyStyle = this.workbook.createCellStyle();
             this.cellCurrentStyle = this.cellBodyStyle;
+            this.cellCurrentHeight = this.cellBodyHeight;
         }
         return this;
     }
@@ -221,8 +228,12 @@ public class WorkbookStyles {
         }
     }
 
-    public void cellWidth(int colWidth) {
-        this.colWidth = 25 * colWidth;
+    public void cellWidth(int width) {
+        this.colWidth = 25 * width;
+    }
+
+    public void cellHeight(int height) {
+        this.cellCurrentHeight = height;
     }
 
     public XSSFCellStyle getCellStyle() {

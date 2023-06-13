@@ -54,24 +54,26 @@ public class WorkbookXmlReportWriter implements ItemWriter<ProductDto> {
         workbookHandler.prepare("SAMPLE 1", cols, rows);
 
         workbookHandler.toHeader().cellBorder("full", "solid");
-        workbookHandler.toHeader().backColor("green");
-        workbookHandler.toHeader().fontColor("yellow");
+        workbookHandler.toHeader().backColor("orange");
+        workbookHandler.toHeader().fontColor("white");
         workbookHandler.toHeader().vAlign("center");
         workbookHandler.toHeader().hAlign("middle");
         workbookHandler.toHeader().weight("bold");
         workbookHandler.toHeader().fontSize((short) 14);
         workbookHandler.toHeader().cellWidth(256);
-        workbookHandler.createHeader(true);
+        workbookHandler.toHeader().cellHeight(1200);
+        workbookHandler.createHeader();
 
         workbookHandler.toBody().cellBorder("full", "solid");
         workbookHandler.toBody().backColor("white");
-        workbookHandler.toBody().fontColor("black");
-        workbookHandler.toBody().vAlign("center");
+        workbookHandler.toBody().fontColor("blue");
+        workbookHandler.toBody().vAlign("left");
         workbookHandler.toBody().hAlign("middle");
         workbookHandler.toBody().weight("normal");
         workbookHandler.toBody().fontSize((short) 11);
         workbookHandler.toBody().cellWidth(256);
-        workbookHandler.createBody(true);
+        workbookHandler.toBody().cellHeight(500);
+        workbookHandler.createBody();
 
         workbookHandler.save("WorkbookXmlReport-"+dateTimeFormat+".xlsx");
         ByteArrayDataSource workbookDataSource = workbookHandler.bytes();

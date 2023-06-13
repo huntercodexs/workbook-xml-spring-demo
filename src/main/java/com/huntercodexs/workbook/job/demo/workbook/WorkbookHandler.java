@@ -31,15 +31,15 @@ public class WorkbookHandler extends WorkbookStyles {
         this.rows = rows;
     }
 
-    public void createHeader(boolean autoSize) {
-        this.header(autoSize);
+    public void createHeader() {
+        this.header();
     }
 
-    public void createBody(boolean autoSize) {
-        this.body(autoSize);
+    public void createBody() {
+        this.body();
     }
 
-    private void header(boolean autoSize) {
+    private void header() {
 
         int rowCounter = 0;
         int colCounter = 0;
@@ -50,11 +50,17 @@ public class WorkbookHandler extends WorkbookStyles {
             Cell cell = row.createCell(colCounter++);
             cell.setCellStyle(this.cellCurrentStyle);
             cell.setCellValue(column.toString().toUpperCase());
-            this.sheet.setColumnWidth(colCounter, this.colWidth);
+
+            if (this.cellCurrentHeight > 0) {
+                cell.getRow().setHeight((short) this.cellCurrentHeight);
+            }
+            if (this.colWidth > 0) {
+                this.sheet.setColumnWidth(colCounter, this.colWidth);
+            }
         }
     }
 
-    private void body(boolean autoSize) {
+    private void body() {
 
         int rowCounter = 1;
         int colCounter = 0;
@@ -68,7 +74,13 @@ public class WorkbookHandler extends WorkbookStyles {
                 Cell cell = row.createCell(colCounter++);
                 cell.setCellStyle(this.cellCurrentStyle);
                 cell.setCellValue(column.toString());
-                this.sheet.setColumnWidth(colCounter, this.colWidth);
+
+                if (this.cellCurrentHeight > 0) {
+                    cell.getRow().setHeight((short) this.cellCurrentHeight);
+                }
+                if (this.colWidth > 0) {
+                    this.sheet.setColumnWidth(colCounter, this.colWidth);
+                }
             }
         }
     }
