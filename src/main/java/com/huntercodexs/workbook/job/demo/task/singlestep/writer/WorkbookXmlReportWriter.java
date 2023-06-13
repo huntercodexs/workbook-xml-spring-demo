@@ -3,7 +3,6 @@ package com.huntercodexs.workbook.job.demo.task.singlestep.writer;
 import com.huntercodexs.workbook.job.demo.dto.ProductDto;
 import com.huntercodexs.workbook.job.demo.workbook.WorkbookHandler;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,6 +11,7 @@ import javax.mail.util.ByteArrayDataSource;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -22,7 +22,6 @@ public class WorkbookXmlReportWriter implements ItemWriter<ProductDto> {
 
     @Autowired
     WorkbookHandler workbookHandler;
-
 
     @Override
     public void write(List<? extends ProductDto> productDto) throws IOException {
@@ -36,9 +35,48 @@ public class WorkbookXmlReportWriter implements ItemWriter<ProductDto> {
         LocalDateTime dateTimeNow = LocalDateTime.now();
         String dateTimeFormat = dateTimeNow.format(FORMATTER);
 
-        XSSFWorkbook workbook = workbookHandler.create(productDto);
-        ByteArrayDataSource workbookDataSource = workbookHandler.bytes(workbook);
-        workbookHandler.save("WorkbookXmlReport-"+dateTimeFormat+".xlsx", workbook);
+        List<String> cols = new ArrayList<>();
+        cols.add("id");
+        cols.add("name");
+        cols.add("description");
+        cols.add("price");
+
+        ArrayList<List<?>> rows = new ArrayList<>();
+        productDto.forEach(item -> {
+            ArrayList<String> list = new ArrayList<>();
+            list.add(String.valueOf(item.getId()));
+            list.add(item.getName());
+            list.add(item.getDescription());
+            list.add(item.getPrice());
+            rows.add(list);
+        });
+
+        workbookHandler.prepare("SAMPLE 1", cols, rows);
+
+        workbookHandler.toHeader().border("full", "solid");
+        workbookHandler.toHeader().backColor("blue");
+        workbookHandler.toHeader().fontColor("yellow");
+        workbookHandler.toHeader().vAlign("center");
+        workbookHandler.toHeader().hAlign("middle");
+        workbookHandler.toHeader().weight("bold");
+        workbookHandler.toHeader().fontSize((short) 14);
+        workbookHandler.toHeader().width(256);
+        workbookHandler.toHeader().height((short) 300);
+        workbookHandler.createHeader(true);
+
+        workbookHandler.toBody().border("full", "solid");
+        workbookHandler.toBody().backColor("white");
+        workbookHandler.toBody().fontColor("black");
+        workbookHandler.toBody().vAlign("center");
+        workbookHandler.toBody().hAlign("middle");
+        workbookHandler.toBody().weight("normal");
+        workbookHandler.toBody().fontSize((short) 11);
+        workbookHandler.toBody().width(256);
+        workbookHandler.toBody().height((short) 1000);
+        workbookHandler.createBody(true);
+
+        workbookHandler.save("WorkbookXmlReport-"+dateTimeFormat+".xlsx");
+        ByteArrayDataSource workbookDataSource = workbookHandler.bytes();
 
     }
 }

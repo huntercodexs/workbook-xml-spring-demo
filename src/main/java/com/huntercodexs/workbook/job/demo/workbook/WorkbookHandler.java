@@ -1,70 +1,100 @@
 package com.huntercodexs.workbook.job.demo.workbook;
 
-import com.huntercodexs.workbook.job.demo.dto.ProductDto;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
 import javax.mail.util.ByteArrayDataSource;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 @Service
-public class WorkbookHandler {
+public class WorkbookHandler extends WorkbookStyles {
 
-    public XSSFWorkbook create(List<? extends ProductDto> productDto) {
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        sheet(workbook, productDto, "SHEET TITLE");
-        return workbook;
+    private List<?> cols = new ArrayList<>();
+    private ArrayList<List<?>> rows = new ArrayList<>();
+
+    public void prepare(
+            String sheetTitle,
+            List<String> cols,
+            ArrayList<List<?>> rows
+    ) {
+        this.workbook = new XSSFWorkbook();
+        this.sheet = workbook.createSheet(sheetTitle);
+        this.cols = cols;
+        this.rows = rows;
     }
 
-    private void sheet(XSSFWorkbook workbook, List<? extends ProductDto> productDto, String sheetTitle) {
-        XSSFSheet sheet = workbook.createSheet(sheetTitle);
-        filler(productDto, sheet);
+    public void createHeader(boolean autoSize) {
+        this.header(autoSize);
     }
 
-    private void filler(List<? extends ProductDto> productDto, XSSFSheet sheet) {
+    public void createBody(boolean autoSize) {
+        this.body(autoSize);
+    }
 
-        int rowNum = 0;
-        int colNum = 0;
+    private void header(boolean autoSize) {
 
-        Row row = sheet.createRow(rowNum++);
+        int rowCounter = 0;
+        int colCounter = 0;
 
-        row.createCell(colNum++).setCellValue("Id");
-        row.createCell(colNum++).setCellValue("Name");
-        row.createCell(colNum++).setCellValue("Description");
-        row.createCell(colNum++).setCellValue("Price");
+        Row row = this.sheet.createRow(rowCounter++);
 
-        for (ProductDto dtoItem : productDto) {
+        for (Object column : this.cols) {
+            Cell cell = row.createCell(colCounter++);
+            cell.setCellStyle(this.cellHeaderStyle);
+            cell.setCellValue(column.toString().toUpperCase());
 
-            colNum = 0;
-            row = sheet.createRow(rowNum++);
-
-            row.createCell(colNum++).setCellValue(dtoItem.getId());
-            row.createCell(colNum++).setCellValue(dtoItem.getName());
-            row.createCell(colNum++).setCellValue(dtoItem.getDescription());
-            row.createCell(colNum++).setCellValue(dtoItem.getPrice());
-            
+            if (autoSize) {
+                this.sheet.setColumnWidth(colCounter, this.colWidth);
+                this.sheet.setDefaultRowHeight(this.rowHeightHeader);
+            }
         }
     }
 
-    public void save(String filename, XSSFWorkbook workbook) throws IOException {
-        FileOutputStream outFile = new FileOutputStream(filename, true);
-        workbook.write(outFile);
+    private void body(boolean autoSize) {
+
+        int rowCounter = 1;
+        int colCounter = 0;
+
+        for (List<?> line : this.rows) {
+
+            colCounter = 0;
+            Row row = this.sheet.createRow(rowCounter++);
+
+            for (Object column : line) {
+                Cell cell = row.createCell(colCounter++);
+                cell.setCellStyle(this.cellBodyStyle);
+                cell.setCellValue(column.toString());
+
+                if (autoSize) {
+                    this.sheet.setColumnWidth(colCounter, this.colWidth);
+                    this.sheet.setDefaultRowHeight(this.rowHeightBody);
+                }
+
+            }
+        }
+    }
+
+    public void save(String filepath) throws IOException {
+        FileOutputStream outFile = new FileOutputStream(filepath, true);
+        this.workbook.write(outFile);
         outFile.close();
     }
 
-    public ByteArrayDataSource bytes(XSSFWorkbook workbook) throws IOException {
-        return new ByteArrayDataSource(
-                convert(workbook), "application/octet-stream");
+    public ByteArrayDataSource bytes() throws IOException {
+        return new ByteArrayDataSource(convert(), "application/octet-stream");
     }
 
-    public byte[] convert(XSSFWorkbook workbook) throws IOException {
+    public byte[] convert() throws IOException {
         ByteArrayOutputStream bytArrayOutputStream = new ByteArrayOutputStream();
-        workbook.write(bytArrayOutputStream);
+        this.workbook.write(bytArrayOutputStream);
         return bytArrayOutputStream.toByteArray();
     }
 
