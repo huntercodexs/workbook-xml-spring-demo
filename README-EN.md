@@ -1,10 +1,10 @@
 # WORKBOOK XML SPRING DEMO
 A simple, small project to demonstrate how to create report sheets easily
 
-# Language
+# Languages
 
-- <a href="README.md">Portugues Brazil (pt-br)</a>
-- English (en)
+- Portuguese Brazil (pt-br)
+- <a href="README-EN.md">English (en)</a>
 
 # Prerequisites
 
@@ -14,21 +14,22 @@ A simple, small project to demonstrate how to create report sheets easily
 
 # About
 
-This project has the purpose to exemplify and show the use of the Apache POI XSSFWorkbook library to create
+This project aims to exemplify and show the use of the Apache POI XSSFWorkbook library to create
 automated spreadsheets.
 
-The project makes an abstraction of methods and settings present within the library into its scope of work, 
-offering simplicity and agility in the implementation of a tool to generate spreadsheet files.
+The project makes an abstraction of methods and settings present within the
+library into its scope of work, offering simplicity and agility in the implementation of a tool
+to generate spreadsheet files.
 
 Below are some examples of spreadsheets that can be generated with WorkbookHandler by Huntercodexs:
 
 - Example 1
 
-![sample1.png](data/midias/sample1.png)
+![sample1.png](data/media/sample1.png)
 
 - Example 2
 
-  ![sample1.png](data/midias/sample2.png)
+  ![sample1.png](data/media/sample2.png)
 
 # How to use
 
@@ -83,6 +84,7 @@ To use the Workbook Handler follow these steps:
 > ['id','name','description','price']
 
 5. Now prepare the data that will compose the body of the table
+
 > Rows = ArrayList<List<?>>;
 
 <code>
@@ -103,18 +105,26 @@ To use the Workbook Handler follow these steps:
 
 > [['1','Product 1','Product 1','100.00'],['2','Product 2','Product 2','1020.00']]
 
-6. Prepare the worksheet for generation
+6. Create the worksheet
+
+<code>
+
+         workbookHandler.create();
+
+</code>
+
+7. Create the table
 
 > See that the table name (SAMPLE 1) is informed in the parameters, the previously generated columns and the lines that
 > were also previously generated
 
 <code>
 
-         workbookHandler.prepare("SAMPLE 1", cols, rows);
+         workbookHandler.createSheet("SAMPLE 1", cols, rows);
 
 </code>
 
-7. Apply styles to the worksheet (optional) - HEADER
+8. Apply styles to the worksheet (optional) - HEADER
 
 <code>
 
@@ -130,7 +140,7 @@ To use the Workbook Handler follow these steps:
 
 </code>
 
-8. Create the Header
+9. Create the Header
 
 <code>
 
@@ -138,7 +148,7 @@ To use the Workbook Handler follow these steps:
 
 </code>
 
-9. Apply styles to the worksheet (optional) - BODY
+10. Apply styles to the worksheet (optional) - BODY
 
 <code>
 
@@ -154,7 +164,7 @@ To use the Workbook Handler follow these steps:
 
 </code>
 
-10. Create the Body
+11. Create the Body
 
 <code>
 
@@ -162,7 +172,7 @@ To use the Workbook Handler follow these steps:
 
 </code>
 
-11. Save the generated spreadsheet in a specific location
+12. Save the generated spreadsheet in a specific location
 
 <code>
 
@@ -185,11 +195,6 @@ If you need to attach the spreadsheet for sending emails, use the following synt
 
 > IDENTIFICATION
 
-- Name for worksheet table
-
-To define the table name use the syntax:
-<pre>workbookHandler.prepare("{{TABLE-NAME-HERE}}", cols, rows);</pre>
-
 - Name of the spreadsheet file to be generated
 
 If you need to save the generated file, use the syntax below:
@@ -199,7 +204,7 @@ If you need to save the generated file, use the syntax below:
 
 - Create a new table
 
-To add another table to your worksheet use the following syntax:
+To create or add a table in your worksheet use the following syntax:
 <pre>workbookHandler.createSheet("{{SHEET-NAME-HERE}}", {{COLS-HERE}}, {{ROWS-HERE}});</pre>
 
 - Reset used settings

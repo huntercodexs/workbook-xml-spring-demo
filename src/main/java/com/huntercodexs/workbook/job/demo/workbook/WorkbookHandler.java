@@ -20,9 +20,12 @@ public class WorkbookHandler extends WorkbookStyles {
     private List<?> cols = new ArrayList<>();
     private ArrayList<List<?>> rows = new ArrayList<>();
 
-    public void prepare(String sheetTitle, List<String> cols, ArrayList<List<?>> rows) {
+    public void create() {
         this.workbook = new XSSFWorkbook();
-        this.sheet = workbook.createSheet(sheetTitle);
+    }
+
+    public void createSheet(String name, List<String> cols, ArrayList<List<?>> rows) {
+        this.sheet = this.workbook.createSheet(name);
         this.cols = cols;
         this.rows = rows;
     }
@@ -33,12 +36,6 @@ public class WorkbookHandler extends WorkbookStyles {
 
     public void createBody() {
         this.body();
-    }
-
-    public void createSheet(String name, List<String> cols, ArrayList<List<?>> rows) {
-        this.sheet = this.workbook.createSheet(name);
-        this.cols = cols;
-        this.rows = rows;
     }
 
     private void header() {

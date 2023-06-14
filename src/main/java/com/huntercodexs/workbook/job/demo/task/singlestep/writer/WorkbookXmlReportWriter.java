@@ -51,9 +51,11 @@ public class WorkbookXmlReportWriter implements ItemWriter<ProductDto> {
             rows.add(list);
         });
 
-        /*SHEET 1*/
-        workbookHandler.prepare("SAMPLE 1", cols, rows);
+        /*CREATE WORKBOOK*/
+        workbookHandler.create();
 
+        /*SHEET 1*/
+        workbookHandler.createSheet("SAMPLE 1", cols, rows);
         workbookHandler.toHeader().cellBorder("full", "solid");
         workbookHandler.toHeader().backColor("orange");
         workbookHandler.toHeader().fontColor("white");

@@ -105,18 +105,26 @@ Para usar o Workbook Handler siga os seguintes passos:
 
 > [['1','Product 1','Product 1','100.00'],['2','Product 2','Product 2','1020.00']]
 
-6. Prepare a planilha para geração
+6. Crie a planilha
+
+<code>
+
+        workbookHandler.create();
+
+</code>
+
+7. Crie a tabela
 
 > Veja que é informado nos parametros o nome da tabela (SAMPLE 1), as colunas geradas anteriormente e as linhas que
 > também foram geradas anteriormente
 
 <code>
 
-        workbookHandler.prepare("SAMPLE 1", cols, rows);
+        workbookHandler.createSheet("SAMPLE 1", cols, rows);
 
 </code>
 
-7. Aplique estilos na planilha (opcional) - HEADER
+8. Aplique estilos na planilha (opcional) - HEADER
 
 <code>
 
@@ -132,7 +140,7 @@ Para usar o Workbook Handler siga os seguintes passos:
 
 </code>
 
-8. Crie a Header
+9. Crie a Header
 
 <code>
 
@@ -140,7 +148,7 @@ Para usar o Workbook Handler siga os seguintes passos:
 
 </code>
 
-9. Aplique estilos na planilha (opcional) - BODY
+10. Aplique estilos na planilha (opcional) - BODY
 
 <code>
 
@@ -156,7 +164,7 @@ Para usar o Workbook Handler siga os seguintes passos:
 
 </code>
 
-10. Crie o Body
+11. Crie o Body
 
 <code>
 
@@ -164,7 +172,7 @@ Para usar o Workbook Handler siga os seguintes passos:
 
 </code>
 
-11. Salve a planilha gerada em um local especifico
+12. Salve a planilha gerada em um local especifico
 
 <code>
 
@@ -187,11 +195,6 @@ Caso seja necessário anexar a planilha para envio de emails, use a seguinte sin
 
 > IDENTIFICAÇÃO
 
-- Nome para tabela da planilha
-
-Para definir o nome da tabela use a sinstaxe:
-<pre>workbookHandler.prepare("{{TABLE-NAME-HERE}}", cols, rows);</pre>
-
 - Nome do arquivo de planilha a ser gerado
 
 Caso seja necessário salvar o arquivo gerado use a sintaxe abaixo:
@@ -201,7 +204,7 @@ Caso seja necessário salvar o arquivo gerado use a sintaxe abaixo:
 
 - Criar uma nova tabela
 
-Para adicionar mais uma tabela em sua planilha use a seguinte sintaxe:
+Para criar ou adicionar uma tabela em sua planilha use a seguinte sintaxe:
 <pre>workbookHandler.createSheet("{{SHEET-NAME-HERE}}", {{COLS-HERE}}, {{ROWS-HERE}});</pre>
 
 - Resetar as configurações utilizadas
