@@ -40,6 +40,7 @@ public class WorkbookXmlReportWriter implements ItemWriter<ProductDto> {
         cols.add("name");
         cols.add("description");
         cols.add("price");
+        cols.add("total");
 
         ArrayList<List<?>> rows = new ArrayList<>();
         productDto.forEach(item -> {
@@ -48,6 +49,7 @@ public class WorkbookXmlReportWriter implements ItemWriter<ProductDto> {
             list.add(item.getName());
             list.add(item.getDescription());
             list.add(item.getPrice());
+            list.add(null);
             rows.add(list);
         });
 

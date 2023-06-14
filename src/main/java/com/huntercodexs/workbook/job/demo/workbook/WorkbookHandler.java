@@ -40,12 +40,23 @@ public class WorkbookHandler extends WorkbookStyles {
 
     private void header() {
 
+        if (this.cols == null) {
+            log.error("Workbook say: header columns is null, is this correct ?");
+            return;
+        }
+
         int rowCounter = 0;
         int colCounter = 0;
 
         Row row = this.sheet.createRow(rowCounter++);
 
         for (Object column : this.cols) {
+
+            if (column == null) {
+                column = "";
+                log.warn("Workbook say: header column is null, is this correct ?");
+            }
+
             Cell cell = row.createCell(colCounter++);
             cell.setCellStyle(this.cellHeaderStyle);
             cell.setCellValue(column.toString().toUpperCase());
@@ -61,15 +72,31 @@ public class WorkbookHandler extends WorkbookStyles {
 
     private void body() {
 
+        if (this.rows == null) {
+            log.error("Workbook say: body rows is null, is this correct ?");
+            return;
+        }
+
         int rowCounter = 1;
         int colCounter = 0;
 
         for (List<?> line : this.rows) {
 
+            if (line == null) {
+                line = new ArrayList<>();
+                log.warn("Workbook say: rows is null, is this correct ?");
+            }
+
             colCounter = 0;
             Row row = this.sheet.createRow(rowCounter++);
 
             for (Object column : line) {
+
+                if (column == null) {
+                    column = "";
+                    log.warn("Workbook say: field body is null, is this correct ?");
+                }
+
                 Cell cell = row.createCell(colCounter++);
                 cell.setCellStyle(this.cellBodyStyle);
                 cell.setCellValue(column.toString());
