@@ -24,33 +24,52 @@ public class WorkbookStyles extends WorkbookColors {
     protected int cellHeaderHeight;
     protected int cellBodyHeight;
     protected int cellCurrentHeight = 0;
+    protected boolean headerActive;
+    protected boolean bodyActive;
 
     public final WorkbookStyles toHeader() {
+        bodyActive = false;
+        headerActive = true;
         if (this.fontHeader == null) {
             this.fontHeader = this.workbook.createFont();
             this.fontCurrent = this.fontHeader;
-            this.cellCurrentHeight = this.cellHeaderHeight;
         }
         if (this.cellHeaderStyle == null) {
             this.cellHeaderStyle = this.workbook.createCellStyle();
             this.cellCurrentStyle = this.cellHeaderStyle;
-            this.cellCurrentHeight = this.cellHeaderHeight;
         }
+        if (this.cellCurrentHeight > 0) this.cellCurrentHeight = 0;
         return this;
     }
 
     public final WorkbookStyles toBody() {
+        bodyActive = true;
+        headerActive = false;
         if (this.fontBody == null) {
             this.fontBody = this.workbook.createFont();
             this.fontCurrent = this.fontBody;
-            this.cellCurrentHeight = this.cellBodyHeight;
         }
         if (this.cellBodyStyle == null) {
             this.cellBodyStyle = this.workbook.createCellStyle();
             this.cellCurrentStyle = this.cellBodyStyle;
-            this.cellCurrentHeight = this.cellBodyHeight;
         }
+        if (this.cellCurrentHeight > 0) this.cellCurrentHeight = 0;
         return this;
+    }
+
+    public void reset() {
+        this.fontBody = null;
+        this.fontHeader = null;
+        this.fontCurrent = null;
+        this.cellBodyStyle = null;
+        this.cellHeaderStyle = null;
+        this.cellCurrentStyle = null;
+        this.colWidth = 0;
+        this.cellBodyHeight = 0;
+        this.cellHeaderHeight = 0;
+        this.cellCurrentHeight = 0;
+        bodyActive = false;
+        headerActive = false;
     }
 
     public void backColor(String color) {
@@ -138,6 +157,8 @@ public class WorkbookStyles extends WorkbookColors {
             }
             default -> throw new RuntimeException("Invalid color to background: " + color);
         }
+
+        styles();
     }
 
     public void fontColor(String color) {
@@ -204,7 +225,11 @@ public class WorkbookStyles extends WorkbookColors {
             }
             default -> throw new RuntimeException("Invalid color to font: " + color);
         }
+
         this.cellCurrentStyle.setFont(this.fontCurrent);
+
+        styles();
+
     }
 
     public void vAlign(String direction) {
@@ -223,6 +248,9 @@ public class WorkbookStyles extends WorkbookColors {
             }
             default -> throw new RuntimeException("Invalid direction to vAlign: " + direction);
         }
+
+        styles();
+
     }
 
     public void hAlign(String direction) {
@@ -238,6 +266,9 @@ public class WorkbookStyles extends WorkbookColors {
             }
             default -> throw new RuntimeException("Invalid direction to hAlign: " + direction);
         }
+
+        styles();
+
     }
 
     public void weight(String option) {
@@ -256,12 +287,17 @@ public class WorkbookStyles extends WorkbookColors {
             }
             default -> throw new RuntimeException("Invalid option to weight: " + option);
         }
+
         this.cellCurrentStyle.setFont(this.fontCurrent);
+
+        styles();
+
     }
 
     public void fontSize(Short size) {
         this.fontCurrent.setFontHeightInPoints(size);
         this.cellCurrentStyle.setFont(this.fontCurrent);
+        styles();
     }
 
     public void cellBorder(String border, String style) {
@@ -310,6 +346,9 @@ public class WorkbookStyles extends WorkbookColors {
             }
             default -> throw new RuntimeException("Invalid value to border: " + border);
         }
+
+        styles();
+
     }
 
     public void cellWidth(int width) {
@@ -318,10 +357,21 @@ public class WorkbookStyles extends WorkbookColors {
 
     public void cellHeight(int height) {
         this.cellCurrentHeight = height;
+        height();
     }
 
     public XSSFCellStyle getCellStyle() {
         return this.cellCurrentStyle;
+    }
+
+    private void height() {
+        if (headerActive) this.cellHeaderHeight = this.cellCurrentHeight;
+        if (bodyActive) this.cellBodyHeight = this.cellCurrentHeight;
+    }
+
+    private void styles() {
+        if (headerActive) this.cellHeaderStyle = this.cellCurrentStyle;
+        if (bodyActive) this.cellBodyStyle = this.cellCurrentStyle;
     }
 
 }

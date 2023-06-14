@@ -51,10 +51,11 @@ public class WorkbookXmlReportWriter implements ItemWriter<ProductDto> {
             rows.add(list);
         });
 
+        /*SHEET 1*/
         workbookHandler.prepare("SAMPLE 1", cols, rows);
 
         workbookHandler.toHeader().cellBorder("full", "solid");
-        workbookHandler.toHeader().backColor("pink");
+        workbookHandler.toHeader().backColor("orange");
         workbookHandler.toHeader().fontColor("white");
         workbookHandler.toHeader().vAlign("center");
         workbookHandler.toHeader().hAlign("middle");
@@ -67,6 +68,42 @@ public class WorkbookXmlReportWriter implements ItemWriter<ProductDto> {
         workbookHandler.toBody().cellBorder("full", "solid");
         workbookHandler.toBody().backColor("white");
         workbookHandler.toBody().fontColor("blue");
+        workbookHandler.toBody().vAlign("left");
+        workbookHandler.toBody().hAlign("middle");
+        workbookHandler.toBody().weight("normal");
+        workbookHandler.toBody().fontSize((short) 11);
+        workbookHandler.toBody().cellWidth(256);
+        workbookHandler.toBody().cellHeight(500);
+        workbookHandler.createBody();
+
+        /*SHEET 2*/
+        workbookHandler.createSheet("SAMPLE 2", cols, rows);
+        workbookHandler.createHeader();
+        workbookHandler.createBody();
+
+        /*SHEET 3*/
+        workbookHandler.reset();
+        workbookHandler.createSheet("SAMPLE 3", cols, rows);
+        workbookHandler.createHeader();
+        workbookHandler.createBody();
+
+        /*SHEET 4*/
+        workbookHandler.reset();
+        workbookHandler.createSheet("SAMPLE 4", cols, rows);
+        workbookHandler.toHeader().cellBorder("full", "solid");
+        workbookHandler.toHeader().backColor("green");
+        workbookHandler.toHeader().fontColor("yellow");
+        workbookHandler.toHeader().vAlign("center");
+        workbookHandler.toHeader().hAlign("middle");
+        workbookHandler.toHeader().weight("bold");
+        workbookHandler.toHeader().fontSize((short) 14);
+        workbookHandler.toHeader().cellWidth(256);
+        workbookHandler.toHeader().cellHeight(1200);
+        workbookHandler.createHeader();
+
+        workbookHandler.toBody().cellBorder("full", "solid");
+        workbookHandler.toBody().backColor("white");
+        workbookHandler.toBody().fontColor("black");
         workbookHandler.toBody().vAlign("left");
         workbookHandler.toBody().hAlign("middle");
         workbookHandler.toBody().weight("normal");

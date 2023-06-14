@@ -197,6 +197,22 @@ Para definir o nome da tabela use a sinstaxe:
 Caso seja necessário salvar o arquivo gerado use a sintaxe abaixo:
 <pre>workbookHandler.save("{{FILE-PATH-HERE}}");</pre>
 
+> MANIPULAÇÃO DE TABELAS
+
+- Criar uma nova tabela
+
+Para adicionar mais uma tabela em sua planilha use a seguinte sintaxe:
+<pre>workbookHandler.createSheet("{{SHEET-NAME-HERE}}", {{COLS-HERE}}, {{ROWS-HERE}});</pre>
+
+- Resetar as configurações utilizadas
+
+Caso seja necessário resetar as configurações de uma tabela use a seguinte sintaxe:
+<pre>workbookHandler.reset();</pre>
+
+> DICA: Use as fucionalidades de manipulação de tabelas para conseguir vários tipos de resultados e
+> formatos de tabelas, o arquivo [WorkbookXmlReportWriter.java] presente nesse projeto da uma demonstração de como 
+> mesclar as configurações para atingir certos objetivos.
+
 > FORMATAÇÃO
 
 - Borda das celulas

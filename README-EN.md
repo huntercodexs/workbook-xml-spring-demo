@@ -195,6 +195,22 @@ To define the table name use the syntax:
 If you need to save the generated file, use the syntax below:
 <pre>workbookHandler.save("{{FILE-PATH-HERE}}");</pre>
 
+> TABLE MANIPULATION
+
+- Create a new table
+
+To add another table to your worksheet use the following syntax:
+<pre>workbookHandler.createSheet("{{SHEET-NAME-HERE}}", {{COLS-HERE}}, {{ROWS-HERE}});</pre>
+
+- Reset used settings
+
+If it is necessary to reset the settings of a table, use the following syntax:
+<pre>workbookHandler.reset();</pre>
+
+> TIP: Use table manipulation features to get various types of results and
+> table formats, the file [WorkbookXmlReportWriter.java] present in this project gives a demonstration of how
+> merge settings to achieve certain goals.
+
 > FORMATTING
 
 - edge of cells
