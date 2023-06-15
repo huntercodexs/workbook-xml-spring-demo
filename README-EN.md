@@ -242,26 +242,29 @@ and for BORDER-STYLE-HERE use the following values:
 - Available colors:
 
 <pre>
-     - white
-     - black
-     - blue
-     - red
-     - yellow
-     - pink
-     - green
-     - orange
-     - aqua
-     - brown
-     - coral
-     - silver-light
-     - silver
-     - gray
-     - dark-silver
-     - gold
-     - indigo
-     - purple
-     - lime
-     - rose
+    - white
+    - black
+    - blue
+    - red
+    - yellow
+    - pink
+    - green
+    - light-green
+    - olive-green
+    - orange
+    - orange
+    - aqua
+    - brown
+    - coral
+    - silver-light
+    - silver
+    - gray
+    - dark-silver
+    - gold
+    - indigo
+    - purple
+    - lime
+    - rose
 </pre>
 
 - Background color of cells

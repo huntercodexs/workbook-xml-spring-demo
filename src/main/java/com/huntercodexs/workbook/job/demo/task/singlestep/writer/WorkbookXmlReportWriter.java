@@ -59,7 +59,7 @@ public class WorkbookXmlReportWriter implements ItemWriter<ProductDto> {
         /*SHEET 1*/
         workbookHandler.createSheet("SAMPLE 1", cols, rows);
         workbookHandler.toHeader().cellBorder("full", "solid");
-        workbookHandler.toHeader().backColor("orange");
+        workbookHandler.toHeader().backColor("sea-green");
         workbookHandler.toHeader().fontColor("white");
         workbookHandler.toHeader().vAlign("center");
         workbookHandler.toHeader().hAlign("middle");

@@ -103,6 +103,18 @@ public class WorkbookStyles extends WorkbookColors {
                 this.cellCurrentStyle.setFillBackgroundColor(GREEN);
                 this.cellCurrentStyle.setFillForegroundColor(GREEN);
             }
+            case "sea-green" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(SEA_GREEN);
+                this.cellCurrentStyle.setFillForegroundColor(SEA_GREEN);
+            }
+            case "light-green" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(LIGHT_GREEN);
+                this.cellCurrentStyle.setFillForegroundColor(LIGHT_GREEN);
+            }
+            case "olive" -> {
+                this.cellCurrentStyle.setFillBackgroundColor(OLIVE);
+                this.cellCurrentStyle.setFillForegroundColor(OLIVE);
+            }
             case "orange" -> {
                 this.cellCurrentStyle.setFillBackgroundColor(ORANGE);
                 this.cellCurrentStyle.setFillForegroundColor(ORANGE);
@@ -183,6 +195,15 @@ public class WorkbookStyles extends WorkbookColors {
             }
             case "green" -> {
                 this.fontCurrent.setColor(GREEN);
+            }
+            case "sea-green" -> {
+                this.fontCurrent.setColor(SEA_GREEN);
+            }
+            case "light-green" -> {
+                this.fontCurrent.setColor(LIGHT_GREEN);
+            }
+            case "olive" -> {
+                this.fontCurrent.setColor(OLIVE);
             }
             case "orange" -> {
                 this.fontCurrent.setColor(ORANGE);

@@ -15,6 +15,9 @@ public class WorkbookColors {
     protected final short YELLOW = IndexedColors.YELLOW.getIndex();
     protected final short PINK = IndexedColors.PINK.getIndex();
     protected final short GREEN = IndexedColors.GREEN.getIndex();
+    protected final short SEA_GREEN = IndexedColors.SEA_GREEN.getIndex();
+    protected final short LIGHT_GREEN = IndexedColors.LIGHT_GREEN.getIndex();
+    protected final short OLIVE = IndexedColors.OLIVE_GREEN.getIndex();
     protected final short ORANGE = IndexedColors.ORANGE.getIndex();
     protected final short AQUA = IndexedColors.AQUA.getIndex();
     protected final short BROWN = IndexedColors.BROWN.getIndex();

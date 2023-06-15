@@ -249,6 +249,9 @@ e para BORDER-STYLE-HERE use os seguintes valores:
     - yellow
     - pink
     - green
+    - sea-green
+    - light-green
+    - olive-green
     - orange
     - aqua
     - brown
